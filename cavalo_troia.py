@@ -117,9 +117,9 @@ def verlista():
 def autentica():
     veri_loguin = e_nome.get()
     veri_senha = e_senha.get()
+    print(veri_loguin, veri_senha)
     banco.sql.execute('''
-    SELECT * FROM veri_login WHERE (veri_loguin =? and veri_senha =?)
-    ''',(veri_loguin,veri_senha))
+    SELECT * FROM login WHERE (veri_loguin =? and veri_senha =?)''',(veri_loguin,veri_senha))
     dados_banco = banco.sql.fetchone()
     try:
         if veri_loguin in dados_banco and veri_senha in dados_banco:
@@ -164,7 +164,7 @@ senha.place(x=10,y=210)
 e_senha = Entry(frame_dir,width=15,font=fonte)
 e_senha.place(x=10,y=240)
 
-b_loguin = Button(frame_dir,command=autentica,text="loguin",font=fonte)
+b_loguin = Button(frame_dir,command=autentica,text="login",font=fonte)
 b_loguin.place(x=10,y=290)
 
 b_cadas = Button(frame_dir,command=cadastro,text="cadastro",font=fonte)
