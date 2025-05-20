@@ -125,7 +125,6 @@ def verlista():
 def autentica():
     veri_loguin = e_nome.get()
     veri_senha = e_senha.get()
-    print(veri_loguin, veri_senha)
     banco.sql.execute("""
     SELECT * FROM login WHERE (login =? and senha =?)""",(veri_loguin,veri_senha))
     dados_banco = banco.sql.fetchone()
