@@ -39,16 +39,22 @@ def cadastro():
     e_nomecada = Entry(frame_dir,width=25,font=fonte)
     e_nomecada.place(x=10,y=50)
 
+    l_usuario = Label(frame_dir,text="Usuario",font=fonte,bg=cinza,fg=branco)
+    l_usuario.place(x=10,y=100)
+
+    e_usuario = Entry(frame_dir,width=25,font=fonte)
+    e_usuario.place(x=10,y=130)
+
     senha["text"] = "Senha"
-    senha.place(y=100)
+    senha.place(y=180)
     senhacadas = Entry(frame_dir,width=25,font=fonte)
-    senhacadas.place(x=10,y=130)
+    senhacadas.place(x=10,y=210)
 
     l_email = Label(frame_dir,text="Email",font=fonte,bg=cinza,fg=branco)
-    l_email.place(x=10,y=180)
+    l_email.place(x=10,y=260)
 
     e_email = Entry(frame_dir,width=25,font=fonte)
-    e_email.place(x=10,y=210)
+    e_email.place(x=10,y=290)
 
 
     def vouta():
@@ -59,6 +65,8 @@ def cadastro():
        l_email.place(x=3000)
        e_nomecada.place(x=3000)
        senhacadas.place(x=3000)
+       e_usuario.place(x=3000)
+       l_usuario.place(x=3000)
        #mostrando a tela de loguin
        listabox.place(x=5,y=6)
        nome.place(x=10,y=130)
@@ -74,7 +82,7 @@ def cadastro():
         adici_nome = e_nomecada.get()
         adicio_senha = senhacadas.get()
         adici_email = e_email.get()
-        adici_loguin = "nulo"
+        adici_loguin = e_usuario.get()
         #colocar um nome usuario
 
         if adici_nome == '' or adici_email == '' or adici_loguin == '' or adicio_senha == ' ':
@@ -93,10 +101,10 @@ def cadastro():
             messagebox.showinfo(title="cadastro",message="cadastro realizado com sucesso")
 
     b_inser = Button(frame_dir,command=adicionar,text="Inserir",font=fonte)
-    b_inser.place(x=10,y=260)
+    b_inser.place(x=10,y=340)
 
     b_voutar = Button(frame_dir,command=vouta, text="Voltar", font=fonte)
-    b_voutar.place(x=90, y=260)
+    b_voutar.place(x=90, y=340)
 
 def verlista():
     listabox.delete(0,END)
@@ -118,8 +126,8 @@ def autentica():
     veri_loguin = e_nome.get()
     veri_senha = e_senha.get()
     print(veri_loguin, veri_senha)
-    banco.sql.execute('''
-    SELECT * FROM login WHERE (veri_loguin =? and veri_senha =?)''',(veri_loguin,veri_senha))
+    banco.sql.execute("""
+    SELECT * FROM login WHERE (login =? and senha =?)""",(veri_loguin,veri_senha))
     dados_banco = banco.sql.fetchone()
     try:
         if veri_loguin in dados_banco and veri_senha in dados_banco:
